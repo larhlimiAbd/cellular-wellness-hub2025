@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cellular Wellness Hub - Prévisualisation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4CAF50; /* Vert principal */
+            --primary-light: #81C784;
+            --secondary: #2E7D32; /* Vert foncé */
+            --accent: #FFC107; /* Ambre doux */
+            --light: #f5f7fa;
+            --dark: #1B5E20; /* Vert très foncé */
+            --text: #33691E; /* Vert olive */
+            --spiritual: #66BB6A; /* Vert clair */
+            --calm: #A5D6A7; /* Vert très clair */
+            --warm: #FFD54F; /* Jaune doux */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 2rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+        }
+        
+        .btn-primary:hover {
+            background-color: #FFB300;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.6);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .logo-icon i {
+            color: white;
+            font-size: 24px;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            position: relative;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+            display: block;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        nav ul li.active a {
+            color: var(--primary);
+        }
+        
+        nav ul li.active a::after {
+            width: 100%;
+        }
+        
+        /* Sous-menu */
+        nav ul li .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        nav ul li:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        nav ul li .submenu li {
+            margin: 0;
+            width: 100%;
+        }
+        
+        nav ul li .submenu li a {
+            padding: 10px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        nav ul li .submenu li:last-child a {
+            border-bottom: none;
+        }
+        
+        nav ul li .submenu li a:hover {
+            background-color: var(--primary-light);
+            color: white;
+        }
+        
+        nav ul li .submenu li a::after {
+            display: none;
+        }
+        
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn.active {
+            background-color: var(--primary-light);
+            color: white;
+        }
+        
+        .lang-btn:hover {
+            background-color: var(--primary-light);
+            color: white;
+        }
+        
+        /* Menu mobile */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.7), rgba(46, 125, 50, 0.8));
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 2rem;
+        }
+        
+        /* Introduction Section */
+        .intro {
+            padding: 100px 0;
+            background-color: var(--light);
+            position: relative;
+        }
+        
+        .intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .intro-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .intro-text {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .intro-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: #f8faf5;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-light), var(--calm));
+        }
+        
+        .service-icon i {
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .service-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-content h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .service-content p {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .service-content .btn {
+            align-self: flex-start;
+            background-color: var(--primary-light);
+            color: white;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+        }
+        
+        .service-content .btn:hover {
+            background-color: var(--primary);
+        }
+        
+        /* Booking Section */
+        .booking {
+            padding: 100px 0;
+            background-color: var(--light);
+            position: relative;
+        }
+        
+        .booking::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1516534775068-ba3e7458af70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .booking-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .booking-form {
+            flex: 1;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .booking-info {
+            flex: 1;
+        }
+        
+        .booking-info h2 {
+            margin-bottom: 30px;
+        }
+        
+        .booking-steps {
+            margin-top: 30px;
+        }
+        
+        .booking-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+            background-color: #f0f7e6;
+            position: relative;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            opacity: 0.08;
+            z-index: -1;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 60px;
+            color: var(--calm);
+            opacity: 0.3;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--calm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .author-info p {
+            margin-bottom: 0;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        
+        .add-testimonial {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: var(--light);
+            position: relative;
+        }
+        
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .about-text h3 {
+            color: var(--spiritual);
+            margin-top: 30px;
+        }
+        
+        /* Pillars Section */
+        .pillars {
+            padding: 100px 0;
+            background-color: #f0f7e6;
+            position: relative;
+        }
+        
+        .pillars::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            opacity: 0.08;
+            z-index: -1;
+        }
+        
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .pillar-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            border-top: 5px solid var(--primary);
+        }
+        
+        .pillar-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pillar-card h3 {
+            color: var(--spiritual);
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            padding: 70px 0 20px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-column p, .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: none;
+        }
+        
+        /* Success Message */
+        .success-message {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content, .about-content, .booking-content {
+                flex-direction: column;
+            }
+            
+            .intro-image, .about-image, .booking-info {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 15px;
+                top: 15px;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav ul li .submenu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background-color: var(--primary-light);
+                border-radius: 0;
+                display: none;
+            }
+            
+            nav ul li:hover .submenu {
+                display: block;
+            }
+            
+            nav ul li .submenu li a {
+                padding: 10px;
+                color: white;
+            }
+            
+            .lang-switcher {
+                margin-top: 15px;
+                margin-left: 0;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="logo-text">Cellular Wellness Hub</div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li class="active" data-section="accueil">
+                        <a href="#accueil" onclick="scrollToSection('accueil')">Accueil</a>
+                    </li>
+                    <li data-section="a-propos">
+                        <a href="#a-propos" onclick="scrollToSection('a-propos')">À Propos</a>
+                        <ul class="submenu">
+                            <li><a href="#" onclick="showModal('philosophy')">Notre Philosophie</a></li>
+                            <li><a href="#" onclick="showModal('team')">Notre Équipe</a></li>
+                            <li><a href="#" onclick="showModal('history')">Notre Histoire</a></li>
+                        </ul>
+                    </li>
+                    <li data-section="services">
+                        <a href="#services" onclick="scrollToSection('services')">Services</a>
+                        <ul class="submenu">
+                            <li><a href="#" onclick="showServiceDetail('energy')">Soins Énergétiques</a></li>
+                            <li><a href="#" onclick="showServiceDetail('access')">Access Consciousness</a></li>
+                            <li><a href="#" onclick="showServiceDetail('reiki')">Reiki</a></li>
+                            <li><a href="#" onclick="showServiceDetail('lymphatic')">Drainage Lymphatique</a></li>
+                            <li><a href="#" onclick="showServiceDetail('coaching')">Coaching</a></li>
+                        </ul>
+                    </li>
+                    <li data-section="booking">
+                        <a href="#booking" onclick="scrollToSection('booking')">Rendez-vous</a>
+                    </li>
+                    <li data-section="testimonials">
+                        <a href="#testimonials" onclick="scrollToSection('testimonials')">Témoignages</a>
+                    </li>
+                    <li data-section="piliers">
+                        <a href="#piliers" onclick="scrollToSection('piliers')">Piliers</a>
+                    </li>
+                    <li data-section="contact">
+                        <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
+                        <ul class="submenu">
+                            <li><a href="#" onclick="showModal('faq')">FAQ</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="changeLanguage('fr')">FR</button>
+                <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-510-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 id="hero-title">Activez Votre Pouvoir de Guérison</h1>
+            <p class="tagline" id="hero-tagline">Transformez-vous à l'Intérieur, Rayonnez à l'Extérieur</p>
+            <p id="hero-welcome">Bienvenue chez Cellular Wellness Hub – votre partenaire sur le chemin du bien-être holistique.</p>
+            <div class="hero-buttons">
+                <a href="#booking" class="btn btn-primary" id="hero-button1" onclick="scrollToSection('booking')">Réservez Votre Appel Découverte Gratuit</a>
+                <a href="#services" class="btn btn-secondary" id="hero-button2" onclick="scrollToSection('services')">Découvrez Nos Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="intro">
+        <div class="container">
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h2 id="intro-title">Débloquez une Santé Éclatante & une Harmonie Intérieure</h2>
+                    <p id="intro-p1">Nous vous guidons vers une santé optimale, la paix intérieure et un équilibre authentique grâce à notre approche unique combinant Soins Énergétiques, Soutien au Drainage Lymphatique, Coaching de Vie perspicace et Programmes Bien-être personnalisés.</p>
+                    <p id="intro-p2">Que vous cherchiez à libérer l'énergie stagnante, à soutenir les processus naturels de guérison de votre corps, à améliorer la détoxification, à gagner en clarté sur la direction de votre vie ou à adopter des habitudes saines et durables, vous trouverez un accompagnement dédié, compatissant et précisément adapté à vos besoins.</p>
+                    <p id="intro-p3">Activez votre plein potentiel et accueillez une version de vous-même plus saine et rayonnante.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Méditation et bien-être">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 id="services-title">Nos Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 id="services-energy-title">Soins Énergétiques à Distance</h3>
+                        <p id="services-energy-desc">Découvrez les changements profonds possibles avec Star Magic Healing – une modalité énergétique avancée, à haute vibration, dispensée à distance.</p>
+                        <a href="#" class="btn" id="services-learn-more" onclick="showServiceDetail('energy')">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 id="services-access-title">Access Consciousness</h3>
+                        <p id="services-access-desc">Outils pour le Changement & la Possibilité. Débloquez votre conscience et donnez-vous les moyens de changer tout ce qui ne fonctionne pas pour vous.</p>
+                        <a href="#" class="btn" id="services-learn-more2" onclick="showServiceDetail('access')">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hands"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 id="services-reiki-title">Soins Reiki</h3>
+                        <p id="services-reiki-desc">Énergie Douce pour l'Équilibre & le Bien-être. Cette pratique japonaise ancestrale canalise l'énergie vitale universelle pour nourrir tout votre être.</p>
+                        <a href="#" class="btn" id="services-learn-more3" onclick="showServiceDetail('reiki')">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 id="services-lymphatic-title">Drainage Lymphatique</h3>
+                        <p id="services-lymphatic-desc">Soutien Doux pour la Détoxification & la Circulation. Soutenez les voies naturelles de détoxification de votre corps.</p>
+                        <a href="#" class="btn" id="services-learn-more4" onclick="showServiceDetail('lymphatic')">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 id="services-coaching-title">Coaching Santé & Bien-être</h3>
+                        <p id="services-coaching-desc">Atteignez Vos Objectifs de Bien-être. Prenez en charge votre bien-être et créez un style de vie que vous aimez !</p>
+                        <a href="#" class="btn" id="services-learn-more5" onclick="showServiceDetail('coaching')">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking" id="booking">
+        <div class="container">
+            <h2 id="booking-title">Prenez Rendez-vous</h2>
+            <div class="booking-content">
+                <div class="booking-form">
+                    <div class="success-message" id="booking-success">
+                        <i class="fas fa-check-circle"></i> Votre demande de rendez-vous a été envoyée avec succès ! Nous vous contacterons bientôt pour confirmer.
+                    </div>
+                    <form id="booking-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstname">Prénom</label>
+                                <input type="text" id="firstname" name="firstname" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname">Nom</label>
+                                <input type="text" id="lastname" name="lastname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="service">Service</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Sélectionnez un service</option>
+                                    <option value="energy">Soins Énergétiques à Distance</option>
+                                    <option value="access">Access Consciousness</option>
+                                    <option value="reiki">Soins Reiki</option>
+                                    <option value="lymphatic">Drainage Lymphatique</option>
+                                    <option value="coaching">Coaching Santé & Bien-être</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Date souhaitée</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Heure souhaitée</label>
+                            <select id="time" name="time" required>
+                                <option value="">Sélectionnez une heure</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message (optionnel)</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Décrivez brièvement vos besoins ou questions..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="booking-submit">Envoyer la demande</button>
+                    </form>
+                </div>
+                <div class="booking-info">
+                    <h2>Comment ça marche ?</h2>
+                    <div class="booking-steps">
+                        <div class="booking-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Remplissez le formulaire</h3>
+                                <p>Indiquez vos coordonnées et choisissez le service qui vous intéresse ainsi que la date et l'heure souhaitées.</p>
+                            </div>
+                        </div>
+                        <div class="booking-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Confirmation</h3>
+                                <p>Nous vous contacterons dans les 24h pour confirmer votre rendez-vous et vous envoyer toutes les informations nécessaires.</p>
+                            </div>
+                        </div>
+                        <div class="booking-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Séance de bien-être</h3>
+                                <p>Profitez de votre séance en personne ou à distance selon votre choix. Tous nos services sont offerts gratuitement pour votre première expérience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 id="testimonials-title">Ce que disent nos clients</h2>
+            <div class="testimonials-grid" id="testimonials-container">
+                <!-- Les témoignages seront ajoutés dynamiquement par JavaScript -->
+            </div>
+            <div class="add-testimonial">
+                <button class="btn btn-outline" onclick="showAddTestimonialForm()">
+                    <i class="fas fa-plus"></i> Partager votre témoignage
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="a-propos">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Praticienne de bien-être">
+                </div>
+                <div class="about-text">
+                    <h2 id="about-title">Notre Philosophie : Renforcer Votre Bien-être Holistique</h2>
+                    <p id="about-p1">Bienvenue chez Cellular Wellness Hub, où votre chemin de guérison autonome est notre priorité. Nous nous consacrons à vous guider vers le bien-être holistique, en offrant des expériences profondément enrichissantes qui harmonisent votre champ énergétique, votre corps physique et votre état émotionnel.</p>
+                    <p id="about-p2">Nous croyons que la véritable vitalité vient de l'intérieur. Grâce à notre combinaison unique de Soins Énergétiques, Soutien Lymphatique et Coaching perspicace, nous nous concentrons sur une transformation profonde et durable, allant au-delà de la relaxation temporaire.</p>
+                    <h3 id="about-meet">Rencontrez FJ – Votre Guide vers la Transformation Holistique</h3>
+                    <p id="about-meet-desc">FJ est une facilitatrice dévouée et compatissante de la transformation personnelle, guidant les individus vers des changements profonds concernant leur bien-être physique, émotionnel, mental et spirituel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pillars Section -->
+    <section class="pillars" id="piliers">
+        <div class="container">
+            <h2 id="pillars-title">Les Piliers de Votre Expérience de Guérison</h2>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <h3 id="pillars-1-title">Le Pouvoir de l'Amour Inconditionnel</h3>
+                    <p id="pillars-1-desc">L'amour est l'essence pure, l'énergie fondamentale facilitant toute guérison. C'est bien plus qu'une émotion ; c'est la force unificatrice qui intègre le corps, l'esprit et l'âme.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3 id="pillars-2-title">Le Pouvoir de l'Intention Ciblée</h3>
+                    <p id="pillars-2-desc">L'intention est la clé qui déverrouille et dirige le flux d'énergie de guérison. Ensemble, nous définissons soigneusement votre intention spécifique pour le bien-être.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3 id="pillars-3-title">Le Pouvoir de l'Intelligence Universelle</h3>
+                    <p id="pillars-3-desc">L'intelligence universelle circule sous forme d'information – un langage cosmique exprimé par des codes puissants, des fréquences et des flux énergétiques.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3 id="pillars-4-title">Le Pouvoir du Savoir Partagé</h3>
+                    <p id="pillars-4-desc">Une pierre angulaire de notre travail est le pouvoir du savoir partagé. Ma profonde certitude concernant l'efficacité de ces outils de guérison énergétique contribue à créer un environnement optimal.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3 id="pillars-5-title">Le Pouvoir de l'Imagination Intuitive</h3>
+                    <p id="pillars-5-desc">Dans mes séances de guérison, l'imagination intuitive sert de canal vital pour accéder à des réalités énergétiques plus profondes.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3 id="pillars-6-title">Le Pouvoir de S'abandonner à la Confiance</h3>
+                    <p id="pillars-6-desc">S'abandonner à la confiance ouvre la porte à une profonde réceptivité à la guérison. Je fournis le fondement sûr où vous pouvez vous sentir suffisamment en sécurité pour véritablement accueillir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 id="footer-about-title">Cellular Wellness Hub</h3>
+                    <p id="footer-about-desc">Votre partenaire sur le chemin du bien-être holistique.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 id="footer-contact-title">Contact</h3>
+                    <p><i class="fas fa-envelope"></i> cellularwellnesshub@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Paris, France</p>
+                </div>
+                <div class="footer-column">
+                    <h3 id="footer-links-title">Liens Rapides</h3>
+                    <ul>
+                        <li><a href="#accueil" onclick="scrollToSection('accueil')" id="nav-home">Accueil</a></li>
+                        <li><a href="#a-propos" onclick="scrollToSection('a-propos')" id="nav-about">À Propos</a></li>
+                        <li><a href="#services" onclick="scrollToSection('services')" id="nav-services">Services</a></li>
+                        <li><a href="#booking" onclick="scrollToSection('booking')" id="nav-booking">Rendez-vous</a></li>
+                        <li><a href="#testimonials" onclick="scrollToSection('testimonials')" id="nav-testimonials">Témoignages</a></li>
+                        <li><a href="#piliers" onclick="scrollToSection('piliers')" id="nav-pillars">Piliers</a></li>
+                        <li><a href="#contact" onclick="scrollToSection('contact')" id="nav-contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 id="footer-newsletter-title">Newsletter</h3>
+                    <p id="footer-newsletter-desc">Inscrivez-vous pour recevoir nos conseils de bien-être.</p>
+                    <form>
+                        <input type="email" placeholder="Votre email">
+                        <button type="submit" class="btn btn-primary" id="footer-subscribe">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p id="footer-copyright">&copy; 2023 Cellular Wellness Hub. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Add Testimonial Modal -->
+    <div id="testimonial-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="testimonial-modal-body">
+                <h2>Partagez votre témoignage</h2>
+                <form id="testimonial-form">
+                    <div class="form-group">
+                        <label for="testimonial-name">Votre nom</label>
+                        <input type="text" id="testimonial-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="testimonial-service">Service concerné</label>
+                        <select id="testimonial-service" required>
+                            <option value="">Sélectionnez un service</option>
+                            <option value="energy">Soins Énergétiques à Distance</option>
+                            <option value="access">Access Consciousness</option>
+                            <option value="reiki">Soins Reiki</option>
+                            <option value="lymphatic">Drainage Lymphatique</option>
+                            <option value="coaching">Coaching Santé & Bien-être</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="testimonial-content">Votre témoignage</label>
+                        <textarea id="testimonial-content" rows="5" required placeholder="Décrivez votre expérience..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="testimonial-consent" required>
+                            J'autorise la publication de mon témoignage sur le site
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer le témoignage</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+        }
+        
+        .close:hover {
+            color: var(--primary);
+        }
+        
+        .modal-body h2 {
+            margin-top: 0;
+        }
+        
+        .modal-body .btn {
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        // Traductions
+        const translations = {
+            fr: {
+                // Hero Section
+                "hero-title": "Activez Votre Pouvoir de Guérison",
+                "hero-tagline": "Transformez-vous à l'Intérieur, Rayonnez à l'Extérieur",
+                "hero-welcome": "Bienvenue chez Cellular Wellness Hub – votre partenaire sur le chemin du bien-être holistique.",
+                "hero-button1": "Réservez Votre Appel Découverte Gratuit",
+                "hero-button2": "Découvrez Nos Services",
+                
+                // Introduction Section
+                "intro-title": "Débloquez une Santé Éclatante & une Harmonie Intérieure",
+                "intro-p1": "Nous vous guidons vers une santé optimale, la paix intérieure et un équilibre authentique grâce à notre approche unique combinant Soins Énergétiques, Soutien au Drainage Lymphatique, Coaching de Vie perspicace et Programmes Bien-être personnalisés.",
+                "intro-p2": "Que vous cherchiez à libérer l'énergie stagnante, à soutenir les processus naturels de guérison de votre corps, à améliorer la détoxification, à gagner en clarté sur la direction de votre vie ou à adopter des habitudes saines et durables, vous trouverez un accompagnement dédié, compatissant et précisément adapté à vos besoins.",
+                "intro-p3": "Activez votre plein potentiel et accueillez une version de vous-même plus saine et rayonnante.",
+                
+                // Services Section
+                "services-title": "Nos Services",
+                "services-energy-title": "Soins Énergétiques à Distance",
+                "services-energy-desc": "Découvrez les changements profonds possibles avec Star Magic Healing – une modalité énergétique avancée, à haute vibration, dispensée à distance.",
+                "services-access-title": "Access Consciousness",
+                "services-access-desc": "Outils pour le Changement & la Possibilité. Débloquez votre conscience et donnez-vous les moyens de changer tout ce qui ne fonctionne pas pour vous.",
+                "services-reiki-title": "Soins Reiki",
+                "services-reiki-desc": "Énergie Douce pour l'Équilibre & le Bien-être. Cette pratique japonaise ancestrale canalise l'énergie vitale universelle pour nourrir tout votre être.",
+                "services-lymphatic-title": "Drainage Lymphatique",
+                "services-lymphatic-desc": "Soutien Doux pour la Détoxification & la Circulation. Soutenez les voies naturelles de détoxification de votre corps.",
+                "services-coaching-title": "Coaching Santé & Bien-être",
+                "services-coaching-desc": "Atteignez Vos Objectifs de Bien-être. Prenez en charge votre bien-être et créez un style de vie que vous aimez !",
+                "services-learn-more": "En savoir plus",
+                "services-learn-more2": "En savoir plus",
+                "services-learn-more3": "En savoir plus",
+                "services-learn-more4": "En savoir plus",
+                "services-learn-more5": "En savoir plus",
+                
+                // Booking Section
+                "booking-title": "Prenez Rendez-vous",
+                "booking-submit": "Envoyer la demande",
+                
+                // Testimonials Section
+                "testimonials-title": "Ce que disent nos clients",
+                
+                // About Section
+                "about-title": "Notre Philosophie : Renforcer Votre Bien-être Holistique",
+                "about-p1": "Bienvenue chez Cellular Wellness Hub, où votre chemin de guérison autonome est notre priorité. Nous nous consacrons à vous guider vers le bien-être holistique, en offrant des expériences profondément enrichissantes qui harmonisent votre champ énergétique, votre corps physique et votre état émotionnel.",
+                "about-p2": "Nous croyons que la véritable vitalité vient de l'intérieur. Grâce à notre combinaison unique de Soins Énergétiques, Soutien Lymphatique et Coaching perspicace, nous nous concentrons sur une transformation profonde et durable, allant au-delà de la relaxation temporaire.",
+                "about-meet": "Rencontrez FJ – Votre Guide vers la Transformation Holistique",
+                "about-meet-desc": "FJ est une facilitatrice dévouée et compatissante de la transformation personnelle, guidant les individus vers des changements profonds concernant leur bien-être physique, émotionnel, mental et spirituel.",
+                
+                // Pillars Section
+                "pillars-title": "Les Piliers de Votre Expérience de Guérison",
+                "pillars-1-title": "Le Pouvoir de l'Amour Inconditionnel",
+                "pillars-1-desc": "L'amour est l'essence pure, l'énergie fondamentale facilitant toute guérison. C'est bien plus qu'une émotion ; c'est la force unificatrice qui intègre le corps, l'esprit et l'âme.",
+                "pillars-2-title": "Le Pouvoir de l'Intention Ciblée",
+                "pillars-2-desc": "L'intention est la clé qui déverrouille et dirige le flux d'énergie de guérison. Ensemble, nous définissons soigneusement votre intention spécifique pour le bien-être.",
+                "pillars-3-title": "Le Pouvoir de l'Intelligence Universelle",
+                "pillars-3-desc": "L'intelligence universelle circule sous forme d'information – un langage cosmique exprimé par des codes puissants, des fréquences et des flux énergétiques.",
+                "pillars-4-title": "Le Pouvoir du Savoir Partagé",
+                "pillars-4-desc": "Une pierre angulaire de notre travail est le pouvoir du savoir partagé. Ma profonde certitude concernant l'efficacité de ces outils de guérison énergétique contribue à créer un environnement optimal.",
+                "pillars-5-title": "Le Pouvoir de l'Imagination Intuitive",
+                "pillars-5-desc": "Dans mes séances de guérison, l'imagination intuitive sert de canal vital pour accéder à des réalités énergétiques plus profondes.",
+                "pillars-6-title": "Le Pouvoir de S'abandonner à la Confiance",
+                "pillars-6-desc": "S'abandonner à la confiance ouvre la porte à une profonde réceptivité à la guérison. Je fournis le fondement sûr où vous pouvez vous sentir suffisamment en sécurité pour véritablement accueillir.",
+                
+                // Footer
+                "footer-about-title": "Cellular Wellness Hub",
+                "footer-about-desc": "Votre partenaire sur le chemin du bien-être holistique.",
+                "footer-contact-title": "Contact",
+                "footer-links-title": "Liens Rapides",
+                "footer-newsletter-title": "Newsletter",
+                "footer-newsletter-desc": "Inscrivez-vous pour recevoir nos conseils de bien-être.",
+                "footer-subscribe": "S'abonner",
+                "footer-copyright": "&copy; 2023 Cellular Wellness Hub. Tous droits réservés.",
+                
+                // Navigation
+                "nav-home": "Accueil",
+                "nav-about": "À Propos",
+                "nav-services": "Services",
+                "nav-booking": "Rendez-vous",
+                "nav-testimonials": "Témoignages",
+                "nav-pillars": "Piliers",
+                "nav-contact": "Contact",
+                
+                // Modal content
+                "modal-philosophy-title": "Notre Philosophie",
+                "modal-philosophy-content": "Chez Cellular Wellness Hub, nous croyons que le bien-être holistique est un voyage de transformation personnelle qui englobe le corps, l'esprit et l'âme. Notre approche unique combine des techniques énergétiques avancées avec un soutien pratique pour vous aider à atteindre une santé optimale et une paix intérieure durable.",
+                
+                "modal-team-title": "Notre Équipe",
+                "modal-team-content": "Notre équipe est composée de praticiens dévoués et expérimentés dans divers domaines du bien-être holistique. Chaque membre apporte une expertise unique pour créer une approche intégrée qui répond à vos besoins individuels.",
+                
+                "modal-history-title": "Notre Histoire",
+                "modal-history-content": "Fondée en 2018, Cellular Wellness Hub est née de la vision de créer un espace où les individus peuvent trouver un soutien complet pour leur parcours de guérison. Depuis lors, nous avons aidé des centaines de clients à transformer leur vie.",
+                
+                "modal-faq-title": "FAQ",
+                "modal-faq-content": "<strong>Q: Combien de temps dure une séance typique ?</strong><br>R: La plupart de nos séances durent entre 60 et 90 minutes, selon le service choisi.<br><br><strong>Q: Les séances à distance sont-elles aussi efficaces ?</strong><br>R: Oui, l'énergie ne connaît pas de distance. Nos clients rapportent des résultats tout aussi puissants avec les séances à distance."
+            },
+            en: {
+                // Hero Section
+                "hero-title": "Activate Your Healing Power",
+                "hero-tagline": "Transform Inside, Radiate Outside",
+                "hero-welcome": "Welcome to Cellular Wellness Hub – your partner on the holistic wellness journey.",
+                "hero-button1": "Book Your Free Discovery Call",
+                "hero-button2": "Explore Our Services",
+                
+                // Introduction Section
+                "intro-title": "Unlock Vibrant Health & Inner Harmony, Wherever You Are",
+                "intro-p1": "We guide you towards optimal health, inner peace, and authentic balance through our unique approach combining Energy Healing, Lymphatic Drainage Support, Insightful Life Coaching, and Personalized Wellness Programs.",
+                "intro-p2": "Whether you seek to release stagnant energy, support your body's natural healing processes, enhance detoxification, gain clarity on your life's direction, or adopt healthy and sustainable habits, you will find dedicated, compassionate, and precisely tailored support to your needs.",
+                "intro-p3": "Activate your full potential and welcome a healthier and more radiant version of yourself.",
+                
+                // Services Section
+                "services-title": "Our Services",
+                "services-energy-title": "Remote Energy Healing",
+                "services-energy-desc": "Discover the profound shifts possible with Star Magic Healing – an advanced, high-vibrational energy modality delivered remotely.",
+                "services-access-title": "Access Consciousness",
+                "services-access-desc": "Tools for Change & Possibility. Unlock your awareness and empower yourself to change anything that isn't working for you.",
+                "services-reiki-title": "Reiki Healing",
+                "services-reiki-desc": "Gentle Energy for Balance & Well-being. This time-honored Japanese practice channels universal life force energy to nurture your whole being.",
+                "services-lymphatic-title": "Lymphatic Drainage",
+                "services-lymphatic-desc": "Gentle Support for Detox & Flow. Support your body's natural detoxification pathways.",
+                "services-coaching-title": "Health & Wellness Coaching",
+                "services-coaching-desc": "Achieve Your Well-being Goals. Take charge of your well-being and create a lifestyle you love!",
+                "services-learn-more": "Learn More",
+                "services-learn-more2": "Learn More",
+                "services-learn-more3": "Learn More",
+                "services-learn-more4": "Learn More",
+                "services-learn-more5": "Learn More",
+                
+                // Booking Section
+                "booking-title": "Book an Appointment",
+                "booking-submit": "Send Request",
+                
+                // Testimonials Section
+                "testimonials-title": "What Our Clients Say",
+                
+                // About Section
+                "about-title": "Our Philosophy: Empowering Your Holistic Wellness",
+                "about-p1": "Welcome to Cellular Wellness Hub, where your empowered healing journey is our focus. We are dedicated to guiding you toward holistic well-being, offering profoundly elevating experiences that harmonize your energy field, physical body, and emotional state.",
+                "about-p2": "We believe true vitality comes from within. Through our unique combination of Energy Healing, Lymphatic Support, and insightful Coaching, we focus on deep, lasting transformation, going beyond temporary relaxation.",
+                "about-meet": "Meet FJ – Your Guide to Holistic Transformation",
+                "about-meet-desc": "FJ is a dedicated and compassionate facilitator of personal transformation, guiding individuals toward profound shifts across their physical, emotional, mental, and spiritual well-being.",
+                
+                // Pillars Section
+                "pillars-title": "Pillars of Your Healing Experience",
+                "pillars-1-title": "The Power of Unconditional Love",
+                "pillars-1-desc": "Love is the pure essence, the fundamental energy facilitating all healing. It's far more than an emotion; it's the unifying force that integrates body, mind, and soul.",
+                "pillars-2-title": "The Power of Focused Intention",
+                "pillars-2-desc": "Intention is the key that unlocks and directs the flow of healing energy. Together, we carefully define your specific intention for well-being.",
+                "pillars-3-title": "The Power of Universal Intelligence",
+                "pillars-3-desc": "Universal intelligence flows as information – a cosmic language expressed through potent codes, frequencies, and energetic streams.",
+                "pillars-4-title": "The Power of Shared Knowing",
+                "pillars-4-desc": "A cornerstone of our work is the power of shared knowing. My deep certainty regarding the effectiveness of these energy healing tools helps create an optimal healing environment.",
+                "pillars-5-title": "The Power of Intuitive Imagination",
+                "pillars-5-desc": "In my healing sessions, intuitive imagination serves as a vital conduit for accessing deeper energetic realities.",
+                "pillars-6-title": "The Power of Surrendering into Trust",
+                "pillars-6-desc": "Surrendering into trust unlocks the doorway to profound healing receptivity. I provide the secure foundation where you can feel safe enough to truly allow.",
+                
+                // Footer
+                "footer-about-title": "Cellular Wellness Hub",
+                "footer-about-desc": "Your partner on the holistic wellness journey.",
+                "footer-contact-title": "Contact",
+                "footer-links-title": "Quick Links",
+                "footer-newsletter-title": "Newsletter",
+                "footer-newsletter-desc": "Subscribe to receive our wellness tips.",
+                "footer-subscribe": "Subscribe",
+                "footer-copyright": "&copy; 2023 Cellular Wellness Hub. All rights reserved.",
+                
+                // Navigation
+                "nav-home": "Home",
+                "nav-about": "About",
+                "nav-services": "Services",
+                "nav-booking": "Booking",
+                "nav-testimonials": "Testimonials",
+                "nav-pillars": "Pillars",
+                "nav-contact": "Contact",
+                
+                // Modal content
+                "modal-philosophy-title": "Our Philosophy",
+                "modal-philosophy-content": "At Cellular Wellness Hub, we believe that holistic wellness is a journey of personal transformation that encompasses body, mind, and spirit. Our unique approach combines advanced energy techniques with practical support to help you achieve optimal health and lasting inner peace.",
+                
+                "modal-team-title": "Our Team",
+                "modal-team-content": "Our team consists of dedicated and experienced practitioners in various fields of holistic wellness. Each member brings unique expertise to create an integrated approach that addresses your individual needs.",
+                
+                "modal-history-title": "Our History",
+                "modal-history-content": "Founded in 2018, Cellular Wellness Hub was born from the vision to create a space where individuals can find comprehensive support for their healing journey. Since then, we have helped hundreds of clients transform their lives.",
+                
+                "modal-faq-title": "FAQ",
+                "modal-faq-content": "<strong>Q: How long does a typical session last?</strong><br>A: Most of our sessions last between 60 to 90 minutes, depending on the service chosen.<br><br><strong>Q: Are remote sessions as effective?</strong><br>A: Yes, energy knows no distance. Our clients report just as powerful results with remote sessions."
+            }
+        };
+
+        // Témoignages prédéfinis
+        const testimonials = [
+            {
+                name: "Marie L.",
+                service: "Soins Énergétiques",
+                content: "Mon expérience avec Cellular Wellness Hub a été transformative. Les soins énergétiques m'ont aidé à libérer des blocages que je portais depuis des années. Je me sens plus légère et plus alignée avec mon véritable moi.",
+                avatar: "ML"
+            },
+            {
+                name: "Thomas M.",
+                service: "Coaching",
+                content: "Le coaching a changé ma façon de voir la santé et le bien-être. Grâce aux conseils personnalisés, j'ai pu mettre en place des habitudes durables qui ont amélioré tous les aspects de ma vie. Je me sens plus équilibré et énergique que jamais.",
+                avatar: "TM"
+            },
+            {
+                name: "Sophie D.",
+                service: "Reiki",
+                content: "Les séances de Reiki avec FJ sont simplement magiques. Chaque fois, je ressens une profonde paix et une relaxation qui dure bien au-delà de la séance. C'est devenu un rituel essentiel dans mon parcours de bien-être.",
+                avatar: "SD"
+            },
+            {
+                name: "Jean-Pierre R.",
+                service: "Access Consciousness",
+                content: "Access Consciousness m'a ouvert à des possibilités que je n'aurais jamais imaginées. J'ai pu libérer des croyances limitantes et créer la vie que je désire vraiment. Merci infiniment !",
+                avatar: "JR"
+            },
+            {
+                name: "Isabelle B.",
+                service: "Drainage Lymphatique",
+                content: "Le drainage lymphatique a fait une différence significative dans mon bien-être physique. Je me sens moins enflée et plus énergique. L'approche douce et professionnelle de FJ est vraiment exceptionnelle.",
+                avatar: "IB"
+            },
+            {
+                name: "Lucas K.",
+                service: "Soins Énergétiques",
+                content: "Même à distance, les soins sont incroyablement puissants. J'ai ressenti les effets dès la première séance et les bénéfices se sont accumulés au fil du temps. Une expérience profondément transformative.",
+                avatar: "LK"
+            }
+        ];
+
+        // Langue actuelle
+        let currentLanguage = 'fr';
+
+        // Fonction pour changer la langue
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Mettre à jour les boutons de langue
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === lang.toUpperCase()) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Mettre à jour tous les éléments avec des IDs de traduction
+            Object.keys(translations[lang]).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    // Pour les éléments qui contiennent du HTML (comme le copyright)
+                    if (key === 'footer-copyright' || key.includes('modal-')) {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Mettre à jour les témoignages
+            loadTestimonials();
+        }
+
+        // Fonction pour défiler vers une section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                window.scrollTo({
+                    top: section.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Fermer le menu mobile si ouvert
+                const nav = document.getElementById('main-nav');
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                }
+            }
+        }
+
+        // Fonction pour afficher les détails d'un service
+        function showServiceDetail(serviceType) {
+            const serviceDetails = {
+                energy: {
+                    title: currentLanguage === 'fr' ? "Soins Énergétiques à Distance" : "Remote Energy Healing",
+                    content: currentLanguage === 'fr' 
+                        ? "Découvrez les changements profonds possibles avec Star Magic Healing – une modalité énergétique avancée, à haute vibration, dispensée à distance. Cette technique puissante travaille directement avec votre empreinte énergétique pour éliminer les blocages profondément ancrés, dissoudre les schémas émotionnels limitants et les traumatismes passés, et réactiver la santé et la vitalité naturelles de votre corps."
+                        : "Discover the profound shifts possible with Star Magic Healing – an advanced, high-vibrational energy modality delivered remotely. This powerful technique works directly with your energetic blueprint to clear deep-seated blockages, dissolve limiting emotional patterns and past traumas, and reactivate your body's natural health and vitality."
+                },
+                access: {
+                    title: currentLanguage === 'fr' ? "Access Consciousness" : "Access Consciousness",
+                    content: currentLanguage === 'fr'
+                        ? "Access Consciousness propose des outils pragmatiques et des perspectives pour débloquer votre conscience et vous donner les moyens de changer tout ce qui ne fonctionne pas pour vous. Il s'agit de poser des questions, de libérer les blocages énergétiques et d'ouvrir la porte à des possibilités infinies."
+                        : "Access Consciousness offers pragmatic tools and perspectives to unlock your awareness and empower you to change anything that isn't working for you. It's about asking questions, clearing energetic blocks, and opening the door to infinite possibilities."
+                },
+                reiki: {
+                    title: currentLanguage === 'fr' ? "Soins Reiki" : "Reiki Healing",
+                    content: currentLanguage === 'fr'
+                        ? "Le Reiki offre un chemin doux vers l'équilibre. Cette pratique japonaise ancestrale canalise l'énergie vitale universelle pour nourrir tout votre être – corps, esprit et âme. En facilitant la circulation de cette énergie de guérison, le Reiki aide à dissoudre les blocages énergétiques, à apaiser le système nerveux et à restaurer votre état naturel d'harmonie et de vitalité."
+                        : "Reiki offers a gentle path back to balance. This time-honored Japanese practice channels universal life force energy to nurture your whole being – body, mind, and spirit. By facilitating the flow of this healing energy, Reiki helps dissolve energetic blocks, soothe the nervous system, and restore your natural state of harmony and vitality."
+                },
+                lymphatic: {
+                    title: currentLanguage === 'fr' ? "Drainage Lymphatique" : "Lymphatic Drainage",
+                    content: currentLanguage === 'fr'
+                        ? "Soutenez les voies naturelles de détoxification de votre corps avec le Drainage Lymphatique. Cette technique spécialisée et douce utilise des mouvements légers et rythmés pour stimuler la circulation de la lymphe dans tout le corps."
+                        : "Support your body's natural detoxification pathways with Lymphatic Drainage. This specialized, gentle technique uses light, rhythmic touch to stimulate the circulation of lymphatic fluid throughout the body."
+                },
+                coaching: {
+                    title: currentLanguage === 'fr' ? "Coaching Santé & Bien-être" : "Health & Wellness Coaching",
+                    content: currentLanguage === 'fr'
+                        ? "Prenez en charge votre bien-être et créez un style de vie que vous aimez ! Le Coaching Santé & Bien-être vous fournit les outils, les stratégies et le soutien nécessaires pour opérer des changements positifs durables."
+                        : "Take charge of your well-being and create a lifestyle you love! Health & Wellness Coaching empowers you with the tools, strategies, and support needed to make lasting positive changes."
+                }
+            };
+            
+            const detail = serviceDetails[serviceType];
+            if (detail) {
+                showModal('custom', detail.title, detail.content);
+            }
+        }
+
+        // Fonction pour afficher un modal
+        function showModal(type, customTitle = null, customContent = null) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            
+            let title, content;
+            
+            if (type === 'custom' && customTitle && customContent) {
+                title = customTitle;
+                content = customContent;
+            } else {
+                const titleKey = `modal-${type}-title`;
+                const contentKey = `modal-${type}-content`;
+                title = translations[currentLanguage][titleKey];
+                content = translations[currentLanguage][contentKey];
+            }
+            
+            modalBody.innerHTML = `
+                <h2>${title}</h2>
+                <p>${content}</p>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        // Fonction pour afficher le formulaire d'ajout de témoignage
+        function showAddTestimonialForm() {
+            const modal = document.getElementById('testimonial-modal');
+            modal.style.display = 'block';
+        }
+
+        // Fonction pour charger les témoignages
+        function loadTestimonials() {
+            const container = document.getElementById('testimonials-container');
+            container.innerHTML = '';
+            
+            testimonials.forEach(testimonial => {
+                const testimonialCard = document.createElement('div');
+                testimonialCard.className = 'testimonial-card';
+                
+                const serviceText = {
+                    'energy': currentLanguage === 'fr' ? 'Soins Énergétiques' : 'Energy Healing',
+                    'access': currentLanguage === 'fr' ? 'Access Consciousness' : 'Access Consciousness',
+                    'reiki': currentLanguage === 'fr' ? 'Reiki' : 'Reiki',
+                    'lymphatic': currentLanguage === 'fr' ? 'Drainage Lymphatique' : 'Lymphatic Drainage',
+                    'coaching': currentLanguage === 'fr' ? 'Coaching' : 'Coaching'
+                }[testimonial.service.split(' ')[0].toLowerCase()] || testimonial.service;
+                
+                testimonialCard.innerHTML = `
+                    <div class="testimonial-content">
+                        <p>${testimonial.content}</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">${testimonial.avatar}</div>
+                        <div class="author-info">
+                            <h4>${testimonial.name}</h4>
+                            <p>${serviceText}</p>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(testimonialCard);
+            });
+        }
+
+        // Menu mobile
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const nav = document.getElementById('main-nav');
+            nav.classList.toggle('active');
+        });
+
+        // Fermer le modal
+        document.querySelectorAll('.close').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+            });
+        });
+
+        // Fermer le modal en cliquant en dehors
+        window.addEventListener('click', function(event) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Formulaire de prise de rendez-vous
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupérer les données du formulaire
+            const formData = new FormData(this);
+            const bookingData = Object.fromEntries(formData);
+            
+            // Simuler l'envoi du formulaire
+            console.log('Données de rendez-vous:', bookingData);
+            
+            // Afficher le message de succès
+            const successMessage = document.getElementById('booking-success');
+            successMessage.classList.add('show');
+            
+            // Réinitialiser le formulaire
+            this.reset();
+            
+            // Masquer le message de succès après 5 secondes
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        });
+
+        // Formulaire de témoignage
+        document.getElementById('testimonial-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupérer les données du formulaire
+            const name = document.getElementById('testimonial-name').value;
+            const service = document.getElementById('testimonial-service').value;
+            const content = document.getElementById('testimonial-content').value;
+            
+            // Créer un nouvel objet témoignage
+            const newTestimonial = {
+                name: name,
+                service: service,
+                content: content,
+                avatar: name.split(' ').map(n => n[0]).join('').toUpperCase()
+            };
+            
+            // Ajouter le témoignage au tableau
+            testimonials.unshift(newTestimonial);
+            
+            // Recharger les témoignages
+            loadTestimonials();
+            
+            // Fermer le modal
+            document.getElementById('testimonial-modal').style.display = 'none';
+            
+            // Réinitialiser le formulaire
+            this.reset();
+            
+            // Afficher un message de confirmation
+            alert(currentLanguage === 'fr' 
+                ? 'Merci pour votre témoignage ! Il sera publié après validation.' 
+                : 'Thank you for your testimonial! It will be published after review.');
+        });
+
+        // Effet de défilement pour l'en-tête
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '10px 0';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.padding = '15px 0';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+            
+            // Mettre à jour l'élément de menu actif
+            updateActiveMenuItem();
+        });
+
+        // Mettre à jour l'élément de menu actif
+        function updateActiveMenuItem() {
+            const sections = ['accueil', 'a-propos', 'services', 'booking', 'testimonials', 'piliers', 'contact'];
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const offsetTop = element.offsetTop;
+                    const offsetBottom = offsetTop + element.offsetHeight;
+                    
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+                        // Mettre à jour la classe active
+                        document.querySelectorAll('nav ul li').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        
+                        const activeItem = document.querySelector(`nav ul li[data-section="${section}"]`);
+                        if (activeItem) {
+                            activeItem.classList.add('active');
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialiser la langue par défaut et charger les témoignages
+        document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage('fr');
+            updateActiveMenuItem();
+            loadTestimonials();
+        });
+    </script>
+</body>
+</html>
